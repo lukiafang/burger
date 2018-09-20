@@ -42,14 +42,14 @@ function printQuestionMarks(num) {
 var orm = {
     all: function(tableInput, cb){
         var queryString = "SELECT * FROM " + tableIput + ";";
-        connection.query(queryString, function(err. result){
+        connection.query(queryString, function(err, result){
             if (err) {
                 throw err;
             }
         })
         cd(result);
     },
-    create: function(table, cols vals, cb) {
+    create: function(table, cols, vals, cb) {
         var queryString = "INSERT INTO " + table;
 
         queryString += " (";
