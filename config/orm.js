@@ -14,7 +14,7 @@ function printQuestionMarks(num) {
     }
   
     return arr.toString();
-  }
+}
   
   // Helper function to convert object key/value pairs to SQL syntax
   function objToSql(ob) {
@@ -37,19 +37,20 @@ function printQuestionMarks(num) {
   
     // translate array of strings to a single comma-separated string
     return arr.toString();
-  }
+};
   
 var orm = {
-    all: function(tableInput, cb){
-        var queryString = "SELECT * FROM " + tableIput + ";";
+    selectAll: function(tableInput, cb){
+        var queryString = "SELECT * FROM " + tableInput + ";";
         connection.query(queryString, function(err, result){
             if (err) {
                 throw err;
             }
+            cb(result);
         })
-        cd(result);
+        
     },
-    create: function(table, cols, vals, cb) {
+    insertOne: function(table, cols, vals, cb) {
         var queryString = "INSERT INTO " + table;
 
         queryString += " (";
@@ -63,13 +64,13 @@ var orm = {
 
         connection.query(queryString, vals, function(err, result) {
             if (err) {
-              throw err;
+            throw err;
             }
-      
+    
             cb(result);
         });
     },
-    delete: function(table, condition, cb) {
+    deleteOne: function(table, condition, cb) {
         var queryString = "DELETE FROM " + table;
         queryString += " WHERE ";
         queryString += condition;
@@ -80,7 +81,24 @@ var orm = {
             }
             cb(result);
         })
-    }
+    },
+    update: function(table, objColVals, condition, cb) {
+        var queryString = "UPDATE " + table;
+    
+        queryString += " SET ";
+        queryString += objToSql(objColVals);
+        queryString += " WHERE ";
+        queryString += condition;
+    
+        console.log(queryString);
+        connection.query(queryString, function(err, result) {
+          if (err) {
+            throw err;
+          }
+    
+          cb(result);
+        });
+    },
 };
 
 

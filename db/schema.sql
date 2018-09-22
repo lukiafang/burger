@@ -1,6 +1,6 @@
 ###schema
 
-CREATE DATABASE burgers_db.
+CREATE DATABASE burgers_db;
 USE burgers_db;
 
 CREATE TABLE burgers
@@ -10,11 +10,6 @@ CREATE TABLE burgers
     devoured BOOLEAN DEFAULT false,
     PRIMARY KEY (id)
 )
-insert queries to populate the burgers table with at least three entries.
-Run the schema.sql and seeds.sql files into the mysql server from the command line
-Now you're going to run these SQL files.
-
-
 
 Make sure you're in the db folder of your app.
 Start MySQL command line tool and login: mysql -u root -p.
