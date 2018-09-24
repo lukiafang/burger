@@ -2,23 +2,18 @@
 
 <h2>World Class of Burgers</h2>
 
-<ul>
-  {{#each burgers}}
-   {{#unless devoured}}
-      {{> burgers/burger-block devoured=true}}
-    {{/unless}}
-  {{/each}}
-</ul>
 
-<h2>Devoured Burgers</h2>
 
 <ul>
-  {{#each burgers}}
-    {{#if devoured}}
-      {{> burgers/burger-block devoured=false}}
-    {{/if}}
-  {{/each}}
+  {{#each burgers}}<li>
+	{{burger_name}}
+	<button class="delete-burger" data-id="{{this.id}}">Devoure!</button>
+  </li>{{/each}}
+
 </ul>
+
+
+
 
 <h2>Add a Burger</h2>
 <form class="create-form">
@@ -28,11 +23,8 @@
     <input type="text" id="ca" name="name">
   </div>
 
-  <div class="form-group">
-    <label for="sleepy">Devoure?</label><br>
-    <input type="radio" name="sleepy" value="1" checked> Dedvoured!<br>
-    <input type="radio" name="sleepy" value="0"> Available
-  </div>
+
 
   <button type="submit">Add Burger</button>
 </form>
+

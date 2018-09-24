@@ -1,9 +1,4 @@
-//inside the burgers_controller.js file, import the following:
 
-
-
-//Express
-// burger.js
 
 // Create the router for the app, and export the router at the end of your file.
 
@@ -22,6 +17,30 @@ router.get("/", function(req, res) {
       console.log(hbsObject);
       res.render("index", hbsObject);
     });
+});
+
+router.post("/api/burgers", function(req, res) {
+  burger.create([
+    "burger_name", "devoured"
+  ], [
+    req.body.name, null
+  ], function(result) {
+    // Send back the ID of the new quote
+    res.json({ id: result.insertId });
+  });
+});
+
+router.delete("/api/burgers/:id", function(req, res) {
+  var condition = "id = " + req.params.id;
+
+  burger.delete(condition, function(result) {
+    if (result.affectedRows == 0) {
+      // If no rows were changed, then the ID must not exist, so 404
+      return res.status(404).end();
+    } else {
+      res.status(200).end();
+    }
+  });
 });
 
 
