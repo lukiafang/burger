@@ -2,6 +2,7 @@
 //==============================================================
 var express = require('express');
 var bodyParser = require('body-parser');
+var methodOverride = require('method-override');
 
 // Sets up Express
 //==============================================================
@@ -12,9 +13,12 @@ var PORT = process.env.PORT || 3000;
 app.use(express.static("public"));
 
 // parse application/x-www-form-urlencoded
-app.use(bodyParser.urlencoded({ extended: true }));
+app.use(bodyParser.urlencoded({ extended: false }));
 // parse application/json
 app.use(bodyParser.json());
+
+app.use(methodOverride('_method'));
+
 
 // Set Handlebars.
 var exphbs = require("express-handlebars");
